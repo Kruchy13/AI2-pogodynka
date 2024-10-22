@@ -24,6 +24,12 @@ class Measurement
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 0)]
     private ?string $celsius = null;
 
+    // Dodajemy konstruktor z ustawieniem domyślnej daty
+    public function __construct()
+    {
+        $this->date = new \DateTime();  // Ustawia domyślną wartość na bieżącą datę
+    }
+
     public function getId(): ?int
     {
         return $this->id;

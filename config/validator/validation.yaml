@@ -1,0 +1,38 @@
+App\Entity\Location:
+  properties:
+    city:
+      - NotBlank: { message: 'City name cannot be blank.' }
+      - Regex: { pattern: '/^[a-zA-Z\s]+$/', message: 'City name must contain only letters and spaces.' }
+    country:
+      - NotBlank: { message: 'Country cannot be blank.' }
+      - Length:
+          min: 2
+          max: 2
+          minMessage: 'Country code must have exactly 2 letters.'
+          maxMessage: 'Country code must have exactly 2 letters.'
+      - Regex: { pattern: '/^[A-Z]{2}$/', message: 'Country must be a valid 2-letter country code.' }
+    latitude:
+      - NotBlank: { message: 'Latitude cannot be blank.' }
+      - Range:
+          min: -90
+          max: 90
+          notInRangeMessage: 'Latitude must be between -90 and 90.'
+    longitude:
+      - NotBlank: { message: 'Longitude cannot be blank.' }
+      - Range:
+          min: -180
+          max: 180
+          notInRangeMessage: 'Longitude must be between -180 and 180.'
+
+App\Entity\Measurement:
+  properties:
+    location:
+      - NotNull: { message: 'Location cannot be null.' }
+    date:
+      - NotNull: { message: 'Date cannot be null.' }
+    celsius:
+      - NotBlank: { message: 'Celsius value cannot be blank.' }
+      - Range:
+          min: -100
+          max: 100
+          notInRangeMessage: 'Celsius must be between -100 and 100.'
