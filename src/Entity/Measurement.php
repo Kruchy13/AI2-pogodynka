@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\MeasurementRepository;
@@ -24,10 +23,10 @@ class Measurement
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 0)]
     private ?string $celsius = null;
 
-    // Dodajemy konstruktor z ustawieniem domyślnej daty
+    // Konstruktor z ustawieniem domyślnej daty
     public function __construct()
     {
-        $this->date = new \DateTime();  // Ustawia domyślną wartość na bieżącą datę
+        $this->date = new \DateTime(); // Ustawia domyślną wartość na bieżącą datę
     }
 
     public function getId(): ?int
@@ -70,4 +69,11 @@ class Measurement
 
         return $this;
     }
+
+    // Nowa metoda konwertująca stopnie Celsjusza na Fahrenheita
+    public function getFahrenheit(): ?float
+    {
+        return $this->celsius !== null ? ($this->celsius * 9/5) + 32 : null;
+    }
 }
+
